@@ -164,24 +164,21 @@ void encodeBlock(FILE* inpFile, long fileSize, long long& totalBits, map<char, s
 }
 
 // ========================
-// CANON OPTZD
+// CANON
 // ========================
-// Compile: g++ -O2 -fopenmp generate_canonical_parallel_fixed.cpp -o gen_parallel
 
 struct NodeRef { unsigned long long freq; int index; bool isLeaf; };
 struct Leaf { unsigned long long freq; int leader; Leaf(unsigned long long f=0): freq(f), leader(-1) {} };
 struct INode { unsigned long long freq; int leader; INode(unsigned long long f=0): freq(f), leader(-1) {} };
 
-// safe conversion for len <= 64
 static string codeToBits_uint64(unsigned long long code, int len) {
     if (len <= 0) return string();
-    if (len > 64) return string(len, '0'); // fallback; use big-int if needed
+    if (len > 64) return string(len, '0');
     string s(len, '0');
     for (int i = 0; i < len; ++i) s[len - 1 - i] = ((code & (1ULL << i)) ? '1' : '0');
     return s;
 }
 
-// Main function: parallel CLGeneration with propagate leader + canonical CWGeneration
 void generateCanonCode(long long freq[], map<char, string>& huffmanCode) {
     cout << "--- [PHASE 2] TAO CAU TRUC MA (CANON) ---\n";
     
@@ -331,7 +328,7 @@ void generateCanonCode(long long freq[], map<char, string>& huffmanCode) {
         lNodesCur = lastLeafIdx;
         iNodesFront = mergeRear + 1;
         if (iNodesFront >= (int)iNodes.size() - 1 && lNodesCur >= m) break;
-    } // end CLGeneration
+    }
 
     // CWGeneration: canonical codes (lengths ascending)
     vector<pair<int,int>> lenIdx(m);
