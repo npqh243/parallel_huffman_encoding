@@ -10,6 +10,10 @@
 using namespace std;
 
 int main() {
+    cout << "--- MA HOA HUFFMAN (CANON) ---\n";
+    
+    omp_set_num_threads(THREADS_NUM);
+    
     FILE* inpFile = fopen(FILE_NAME, "r");
     if (!inpFile) {
         cerr << "Khong the mo file input\n";

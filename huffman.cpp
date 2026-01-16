@@ -159,6 +159,8 @@ void encodeBlock(FILE* inpFile, long fileSize, long long& totalBits, map<char, s
     }
 
     delete[] buffer;
+
+    cout << "Hoan thanh gia lap ma hoa\n";
 }
 
 // ========================
@@ -181,6 +183,8 @@ static string codeToBits_uint64(unsigned long long code, int len) {
 
 // Main function: parallel CLGeneration with propagate leader + canonical CWGeneration
 void generateCanonCode(long long freq[], map<char, string>& huffmanCode) {
+    cout << "--- [PHASE 2] TAO CAU TRUC MA (CANON) ---\n";
+    
     const int N = 256;
 
     // collect symbols with positive frequency
@@ -366,4 +370,6 @@ void generateCanonCode(long long freq[], map<char, string>& huffmanCode) {
     // fill map (assign empty string for non-occurring chars)
     huffmanCode.clear();
     for (int c = 0; c < N; ++c) huffmanCode[(char)c] = codesByChar[c];
+
+    cout << "Hoan thanh tao ma huffman\n";
 }

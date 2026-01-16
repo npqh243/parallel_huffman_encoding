@@ -10,6 +10,10 @@
 using namespace std;
 
 int main() {
+    cout << "--- MA HOA HUFFMAN (BLOCK + CANON) ---\n";
+
+    omp_set_num_threads(THREADS_NUM);
+    
     FILE* inpFile = fopen(FILE_NAME, "r");
     if (!inpFile) {
         cerr << "Khong the mo file input\n";
@@ -48,7 +52,7 @@ int main() {
     fclose(inpFile);
 
     // --- KẾT QUẢ ---
-    cout << "=== KET QUA CANON HUFFMAN ===\n";
+    cout << "=== KET QUA BLOCK + CANON HUFFMAN ===\n";
     cout << "Tong thoi gian chay:   " << time3 - time0 << " giay\n";
 
     double originalSizeMB = (double)fileSize / 1024 / 1024;    // / KB / MB
