@@ -1,0 +1,6 @@
+*.exe
+*.ilk
+*.obj
+*.pdb
+.vscode
+random_1gb.huffinp
